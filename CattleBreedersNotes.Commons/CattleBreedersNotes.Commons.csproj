@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>RiceCakeSoftware.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>RiceCakeSoftware.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <ApplicationIcon>cattle_breeders_notes.ico</ApplicationIcon>
+    <Company>RiceCakeSoftware</Company>
+    <Description>繁殖成績向上を目指した繁殖管理アプリケーション共通部品</Description>
+    <Copyright>© 2023 RiceCakeSoftware</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="cattle_breeders_notes.ico" />
+  </ItemGroup>
+
+</Project>

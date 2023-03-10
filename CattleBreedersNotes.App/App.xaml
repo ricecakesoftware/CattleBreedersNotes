@@ -1,0 +1,48 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RiceCakeSoftware.CattleBreedersNotes.App"
+             x:Class="RiceCakeSoftware.CattleBreedersNotes.App.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <ControlTemplate x:Key="UnauthorizedPageScaffold">
+                <Grid ColumnDefinitions="*" RowDefinitions="Auto, *">
+                    <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="8, Auto, 16, *, 16, Auto, 8" RowDefinitions="8, Auto, 8" BackgroundColor="{StaticResource Primary}">
+                        <Image Grid.Column="1" Grid.Row="1" Source="job_chikusan.png" WidthRequest="48" HeightRequest="48" />
+                        <Label Grid.Column="3" Grid.Row="1" Text="{TemplateBinding HeaderTitle}" VerticalOptions="Center" HorizontalOptions="Start" TextColor="#FFFFFF" FontSize="Large" />
+                    </Grid>
+                    <Grid Grid.Column="0" Grid.Row="1" ColumnDefinitions="8, *, 8" RowDefinitions="8, *, 8" BackgroundColor="{StaticResource Gray100}">
+                        <ContentPresenter Grid.Column="1" Grid.Row="1" />
+                    </Grid>
+                </Grid>
+            </ControlTemplate>
+            <ControlTemplate x:Key="AuthorizedPageScaffold">
+                <Grid ColumnDefinitions="*" RowDefinitions="Auto, *">
+                    <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="8, Auto, 16, *, 16, Auto, 8" RowDefinitions="8, Auto, 8" BackgroundColor="{StaticResource Primary}">
+                        <Image Grid.Column="1" Grid.Row="1" Source="job_chikusan.png" WidthRequest="48" HeightRequest="48" />
+                        <Label Grid.Column="3" Grid.Row="1" Text="{TemplateBinding HeaderTitle}" VerticalOptions="Center" HorizontalOptions="Start" TextColor="{StaticResource White}" FontSize="Large" />
+                        <ImageButton Grid.Column="5" Grid.Row="1" Source="logout_black_48dp.svg" WidthRequest="32" HeightRequest="32" Command="{TemplateBinding LogoutCommand}" />
+                    </Grid>
+                    <Grid Grid.Column="0" Grid.Row="1" ColumnDefinitions="8, *, 8" RowDefinitions="8, *, 8" BackgroundColor="{StaticResource Gray100}">
+                        <ContentPresenter Grid.Column="1" Grid.Row="1" />
+                    </Grid>
+                </Grid>
+            </ControlTemplate>
+            <ControlTemplate x:Key="ModalPageScaffold">
+                <Grid ColumnDefinitions="*" RowDefinitions="Auto, *">
+                    <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="8, Auto, 16, *, 16, Auto, 8" RowDefinitions="8, Auto, 8" BackgroundColor="{StaticResource Primary}">
+                        <ImageButton Grid.Column="1" Grid.Row="1" Source="arrow_back_ios_new_black_48dp.svg" WidthRequest="32" HeightRequest="32" Command="{TemplateBinding BackCommand}" />
+                        <Label Grid.Column="3" Grid.Row="1" Text="{TemplateBinding HeaderTitle}" VerticalOptions="Center" HorizontalOptions="Start" TextColor="{StaticResource White}" FontSize="Large" />
+                    </Grid>
+                    <Grid Grid.Column="0" Grid.Row="1" ColumnDefinitions="8, *, 8" RowDefinitions="8, *, 8" BackgroundColor="{StaticResource Gray100}">
+                        <ContentPresenter Grid.Column="1" Grid.Row="1" />
+                    </Grid>
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

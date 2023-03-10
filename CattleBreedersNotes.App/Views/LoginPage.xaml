@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:UnauthorizedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                           xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                           xmlns:controls="clr-namespace:RiceCakeSoftware.CattleBreedersNotes.App.Controls"
+                           xmlns:viewmodels="clr-namespace:RiceCakeSoftware.CattleBreedersNotes.App.ViewModels"
+                           x:Class="RiceCakeSoftware.CattleBreedersNotes.App.Views.LoginPage"
+                           x:DataType="viewmodels:LoginPageViewModel"
+                           ControlTemplate="{StaticResource UnauthorizedPageScaffold}"
+                           HeaderTitle="{Binding HeaderTitle}">
+    <controls:UnauthorizedPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Appearing" Command="{Binding AppearingCommand}" />
+    </controls:UnauthorizedPage.Behaviors>
+    <RefreshView IsRefreshing="{Binding IsBusy}">
+        <Frame CornerRadius="8">
+            <Grid ColumnDefinitions="*" RowDefinitions="Auto, 8, Auto, 8, Auto, 8, Auto, 8, Auto, 8, Auto">
+                <Image Grid.Column="0" Grid.Row="0" Source="lock_black_48dp.svg" WidthRequest="48" HeightRequest="48" HorizontalOptions="Center" />
+                <Label Grid.Column="0" Grid.Row="2" Text="メールアドレス" FontSize="Medium" />
+                <Entry Grid.Column="0" Grid.Row="4" Text="{Binding Email, Mode=TwoWay}" IsEnabled="{Binding IsNotBusy}" Placeholder="******@******.***" ClearButtonVisibility="WhileEditing" FontSize="Medium" />
+                <Label Grid.Column="0" Grid.Row="6" Text="パスワード" FontSize="Medium" />
+                <Entry Grid.Column="0" Grid.Row="8" Text="{Binding Password, Mode=TwoWay}" IsPassword="True" IsEnabled="{Binding IsNotBusy}" Placeholder="********" ClearButtonVisibility="WhileEditing" FontSize="Medium" />
+                <Button Grid.Column="0" Grid.Row="10" Text="ログイン" Command="{Binding LoginCommand}" IsEnabled="{Binding IsNotBusy}" FontSize="Medium" />
+            </Grid>
+        </Frame>
+    </RefreshView>
+</controls:UnauthorizedPage>

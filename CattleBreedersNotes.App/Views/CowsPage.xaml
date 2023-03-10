@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:AuthorizedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                         xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                         xmlns:controls="clr-namespace:RiceCakeSoftware.CattleBreedersNotes.App.Controls"
+                         xmlns:models="clr-namespace:RiceCakeSoftware.CattleBreedersNotes.App.Models"
+                         xmlns:viewmodels="clr-namespace:RiceCakeSoftware.CattleBreedersNotes.App.ViewModels"
+                         x:Class="RiceCakeSoftware.CattleBreedersNotes.App.Views.CowsPage"
+                         x:DataType="viewmodels:CowsPageViewModel"
+                         ControlTemplate="{StaticResource AuthorizedPageScaffold}"
+                         HeaderTitle="{Binding HeaderTitle}"
+                         LogoutCommand="{Binding LogoutCommand}">
+    <controls:AuthorizedPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Appearing" Command="{Binding AppearingCommand}" />
+    </controls:AuthorizedPage.Behaviors>
+    <controls:AuthorizedPage.Resources>
+        <ResourceDictionary>
+            <toolkit:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
+    </controls:AuthorizedPage.Resources>
+    <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding RefreshCommand}">
+        <ScrollView>
+            <Grid ColumnDefinitions="*" RowDefinitions="Auto, 8, *">
+                <SearchBar Grid.Column="0" Grid.Row="0" Placeholder="対象牛を検索します" IsEnabled="{Binding IsNotBusy}" />
+                <ScrollView Grid.Column="0" Grid.Row="2" Orientation="Vertical" VerticalScrollBarVisibility="Always">
+                    <Frame CornerRadius="8">
+                        <CollectionView ItemsSource="{Binding CowList}" ItemsLayout="VerticalList">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="{x:Type models:Cow}">
+                                    <Grid ColumnDefinitions="Auto, 8, *, 8, Auto" RowDefinitions="Auto, Auto" Margin="8">
+                                        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Source="{Binding Image, Converter={StaticResource ByteArrayToImageSourceConverter}}" VerticalOptions="Center" WidthRequest="48" HeightRequest="48" />
+                                        <Label Grid.Column="2" Grid.Row="0" Text="{Binding Id}" />
+                                        <Label Grid.Column="2" Grid.Row="1" Text="{Binding Name}" FontSize="Medium" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Frame>
+                </ScrollView>
+                <Button Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Margin="16" ImageSource="add_black_48dp.svg" HeightRequest="48" WidthRequest="48" CornerRadius="32" Command="{Binding AddCommand}" />
+            </Grid>
+        </ScrollView>
+    </RefreshView>
+</controls:AuthorizedPage>
